@@ -1,0 +1,7 @@
+[main]
+co_file=../data/dimacs/USA-road-d.NY.co
+gr_file=../data/dimacs/USA-road-d.NY.gr
+draw_graph=0
+ara=0
+ad=1
+iterations=10

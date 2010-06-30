@@ -354,9 +354,8 @@ vector<Ad::Change> Ad::getChanges(){
 #endif
 	Debug::iter++;
 	//decrementos
-	if(Debug::iter % 2 == 1 ){
-
-		for( set< pair<int,int> >::iterator it = cjMud.begin(); it != cjMud.end(); it++){
+	if(Debug::iter % 2 == 1 ) {
+		for( set< pair<int,int> >::iterator it = cjMud.begin(); it != cjMud.end(); it++) {
 			Edge_Weight custo = c(it->first,it->second);
 			if( custo > 16){
 				dchanges.push_back( make_pair( custo - ((gen() % 16) + 1) , make_pair(it->first,it->second)));
@@ -365,7 +364,7 @@ vector<Ad::Change> Ad::getChanges(){
 		}
 	}else{ // incrementos
 		
-		while( !Debug::changes.empty()){
+		while( !Debug::changes.empty()) {
 			dchanges.push_back(Debug::changes.top());
 			Debug::changes.pop();
 		}
@@ -882,13 +881,14 @@ Ad::Edge_Weight Ad::astar(int start, int goal, bool verbose){
 void Ad::test(int repeat){
 	int start, goal;
 	static mt19937 gen((boost::uint32_t)time(0));
-	Debug::totIter = repeat/2;
+	Debug::totIter = repeat*2;
 
 	cout << "Mudancas aleatorias" << endl << "type\t#ch\ttA*\ttAD*\tspeedup\tvA*\tvAD* exp\tvAD* cor" << endl;
 	Debug::only_path_vertices = false;
-	Debug::iter = 0;
+	Debug::iter = repeat;
 	Debug::mudancas_passo = 1;
 
+	/*
 	//for(int iter = 1; iter <= repeat; iter++){
 		do{
 			start = (gen()%num_nodes) + 1;
@@ -897,10 +897,11 @@ void Ad::test(int repeat){
 		Debug::iter = 0;
 		main(start, goal, 1.0, 0.2, repeat);
 	//}
+	*/
 //cout << "-----" << endl;
 	for(int i = 0; i < 6; i++)
 	{
-		//Debug::mudancas_passo = (long) (num_nodes * Debug::mp[i]);
+		Debug::mudancas_passo = (long) (num_nodes * Debug::mp[i]);
 		Debug::porcentagem = Debug::mp[i];
 		//for(int iter = 1; iter <= repeat; iter++){
 			do{
@@ -908,7 +909,7 @@ void Ad::test(int repeat){
 				goal = (gen()%num_nodes) + 1;
 			}while( start == goal );
 			Debug::iter = 0;
-			main(start, goal, 1.0, 0.2, repeat);
+			main(start, goal, 1.0, 0.2, repeat*2);
 		//	cout << "-----" << endl;
 		//}
 	}

@@ -29,7 +29,7 @@
 //#define ONLY_CHANGE_PATH
 #define ONLY_CHANGE_REGION
 //#define MUDANCAS_PASSO 200
-#define DRAW_GRAPH
+//#define DRAW_GRAPH
 
 
 using namespace boost;
@@ -135,4 +135,5 @@ public:
 #ifdef DRAW_GRAPH
 #include "drawGraph.h"
 #endif
+
 #endif
